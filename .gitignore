@@ -1,0 +1,6 @@
+*.pcap
+*.pcapng
+*.key
+*.pem
+id_ed25519*
+.env
