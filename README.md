@@ -14,6 +14,14 @@ A virtualized cybersecurity homelab built using Kali Linux, Ubuntu Server 26.04.
 - Nginx
 - Wireshark
 - Git and GitHub
+- 
+## Host System Deployment
+
+- Repurposed an existing Windows 11 desktop into a dedicated Kali Linux cybersecurity workstation.
+- Replaced Windows 11 with a bare-metal Kali Linux installation using bootable USB installation media.
+- Configured Linux networking and enabled AMD hardware virtualization (AMD-V).
+- Installed and configured KVM/QEMU with libvirt to host virtual machines.
+- Deployed Ubuntu Server 26.04.1 LTS as a virtualized security testing environment.
 
 ## Lab Architecture
 - Host operating system: Kali Linux
