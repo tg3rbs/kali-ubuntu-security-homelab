@@ -1,0 +1,12 @@
+# Nmap 7.991 scan initiated Fri Oct 16 13:35:53 2026 as: /usr/lib/nmap/nmap --privileged -sT -sV -p 22,80 -oN scans/service_scan.txt 192.168.122.22
+Nmap scan report for 192.168.122.22
+Host is up (0.00012s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 10.2p1 Ubuntu 2ubuntu3.8 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    nginx 1.28.3 (Ubuntu)
+MAC Address: 52:54:00:A4:24:DB (QEMU virtual NIC)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Oct 16 13:36:00 2026 -- 1 IP address (1 host up) scanned in 6.76 seconds
