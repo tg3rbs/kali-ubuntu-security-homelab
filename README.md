@@ -1,7 +1,7 @@
 # Kali Linux & Ubuntu Server Security Homelab
 
 ## Overview
-A virtualized cybersecurity homelab built using Kali Linux, Ubuntu Server 26.04.1 LTS, and KVM/QEMU. This project demonstrates Linux server administration, SSH hardening, firewall configuration, network reconnaissance, and packet analysis.
+A virtualized cybersecurity homelab built using Kali Linux, Ubuntu Server 26.04.1 LTS, and KVM/QEMU. This project demonstrates Linux server administration, SSH hardening, firewall configuration, automated network reconnaissance, Bash security auditing, and packet analysis.
 
 ## Technologies
 - Kali Linux
@@ -14,7 +14,8 @@ A virtualized cybersecurity homelab built using Kali Linux, Ubuntu Server 26.04.
 - Nginx
 - Wireshark
 - Git and GitHub
-- 
+- Bash scripting
+
 ## Host System Deployment
 
 - Repurposed an existing Windows 11 desktop into a dedicated Kali Linux cybersecurity workstation.
@@ -50,20 +51,33 @@ After configuring Nginx and allowing HTTP traffic:
 - Port 22: OpenSSH 10.2p1
 - Port 80: Nginx 1.28.3
 
+## Automated Network Scanning
+Implemented a repeatable Nmap workflow in [scripts/network_scan.sh](scripts/network_scan.sh). The Bash script checks that Nmap is installed, creates the scans directory, and runs a TCP connect scan with service-version detection against ports 22 and 80 on the authorized Ubuntu Server VM:
+
+```bash
+# Run from the repository root on the Kali host.
+bash scripts/network_scan.sh
+```
+
+Each run saves results to [scans/service_scan.txt](scans/service_scan.txt), replacing the previous report. The recorded scan confirms SSH and HTTP are open.
+
+## Security Audit Workflow
+Created and ran a Bash security audit script (`security_audit.sh`) locally on the Ubuntu Server VM with sudo. The audit reports SSH authentication settings, UFW firewall status and rules, and the Fail2ban SSH jail status to support repeatable checks of the server's defensive configuration.
+
+The audit script has been completed and used locally but is not yet included in this repository.
+
 ## Traffic Analysis
 Captured HTTP traffic using Wireshark on the virbr0 virtual network interface. Observed an HTTP GET request and an HTTP 304 Not Modified response, demonstrating how unencrypted HTTP traffic can be inspected.
 
 ## Project Structure
-- scripts/ — Network scanning and security audit scripts
-- configs/ — Sanitized security configuration examples
-- scans/ — Network reconnaissance results
-- docs/ — Architecture and security documentation
+- scripts/ — Automated Nmap network scanning script
+- scans/ — Saved network reconnaissance results
 
 ## Security Notes
 All scanning was performed against a personally controlled virtual machine in a local homelab. Private SSH keys, credentials, and raw packet captures are excluded from the public repository.
 
 ## Future Improvements
-- Automate security auditing with Bash.
-- Add repeatable network scanning scripts.
-- Document network architecture and security findings.
+- Add the completed local security audit script and sanitized example output to the repository.
+- Document network architecture and security findings in docs/.
+- Add sanitized security configuration examples in configs/.
 - Explore HTTPS configuration and additional defensive monitoring.
